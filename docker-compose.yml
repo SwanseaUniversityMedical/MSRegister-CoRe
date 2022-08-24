@@ -3,7 +3,7 @@ services:
 
   msregister:
     container_name: msregistercore
-    image: msregister:latest
+    image: msregistercore:latest
     environment:
       - ConnectionStrings__DefaultConnection=${CONN}
     ports:
