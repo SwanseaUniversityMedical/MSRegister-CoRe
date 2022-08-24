@@ -11,6 +11,7 @@ RUN dotnet restore "MSRegister-CoRe/MSRegister-CoRe.csproj"
 COPY . .
 WORKDIR "/src/MSRegister-CoRe"
 RUN dotnet build "MSRegister-CoRe.csproj" -c Release -o /app/build
+RUN sed -i 's/DEFAULT@SECLEVEL=2/DEFAULT@SECLEVEL=1/g' /etc/ssl/openssl.cnf
 
 FROM build AS publish
 RUN dotnet publish "MSRegister-CoRe.csproj" -c Release -o /app/publish
