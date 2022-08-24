@@ -5,6 +5,6 @@ services:
     container_name: msregistercore
     image: msregister:latest
     environment:
-      - ConnectionStrings__DefaultConnection=Server=(localdb)\\mssqllocaldb;Database=ms-core;Trusted_Connection=True;MultipleActiveResultSets=true
+      - ConnectionStrings__DefaultConnection=${CONN}
     ports:
       - 80:80
