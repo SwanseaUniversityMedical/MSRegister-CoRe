@@ -8,10 +8,10 @@ Very simple error checking
 
 
 The System will retuurn
-"Saved" when its saved to teh database
+"Saved" when its saved to the database
 "Error" when there is an error
 
-The app will be responsible for checkign data is saved and doing any retry
+The app will be responsible for checking data is saved and doing any retry
 
 
 C# app - build to run in Kestral or as a Docker Container.
