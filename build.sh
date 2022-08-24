@@ -1,0 +1,1 @@
+docker build -f "./MSRegister-CoRe/Dockerfile" --force-rm -t msregistercore:latest --target base  --label "com.microsoft.created-by=visual-studio" --label "com.microsoft.visual-studio.project-name=MSRegister-CoRe" "./MSRegister-CoRe"
