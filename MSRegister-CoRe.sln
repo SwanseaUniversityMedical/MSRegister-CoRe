@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MSRegister-CoRe", "MSRegist
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C7EE7240-F441-4942-B001-0256CB47DC99}"
 	ProjectSection(SolutionItems) = preProject
-		.env.example = .env.example
-		buildimage.sh = buildimage.sh
 		docker-compose.yml = docker-compose.yml
 		pushImage.bat = pushImage.bat
 	EndProjectSection
