@@ -19,4 +19,15 @@ RUN dotnet publish "MSRegister-CoRe.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+
+# using a non-root user is a best practice for security related execution.
+##RUN groupadd --gid ${gid} ${group} && useradd -u ${uid} -g ${group} -s /bin/sh ${user}
+RUN groupadd --gid 1011 appgroup && useradd -u 1012 -g appgroup -s /bin/sh appuser
+# Serve on port 8080, we cannot serve on port 80 with a custom user that is not root.
+ENV ASPNETCORE_URLS=http://+:8080
+EXPOSE 8080
+# Now switch user
+USER 1012
+
+
 ENTRYPOINT ["dotnet", "MSRegister-CoRe.dll"]

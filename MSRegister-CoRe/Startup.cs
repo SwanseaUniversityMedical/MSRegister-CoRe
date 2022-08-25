@@ -24,10 +24,13 @@ namespace MSRegister_CoRe
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            
-            services.AddControllersWithViews();
+            //services.AddDbContext<ApplicationDbContext>(options =>
+            //     options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+          services.AddDbContext<ApplicationDbContext>(options =>
+              options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+
+          services.AddControllersWithViews();
             services.AddRazorPages();
 
         }
@@ -43,6 +46,19 @@ namespace MSRegister_CoRe
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
+            var serviceScopeFactory = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>();
+            using (var serviceScope = serviceScopeFactory.CreateScope())
+            {
+                var dbContext = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                dbContext.Database.EnsureCreated();
+
+                if (dbContext.Database.GetPendingMigrations().Any()) 
+                    dbContext.Database.Migrate(); 
+                
+            }
+
+
             app.UseStaticFiles();
 
             app.UseRouting();
