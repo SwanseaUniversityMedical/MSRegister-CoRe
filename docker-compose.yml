@@ -8,6 +8,8 @@ services:
 #      - ConnectionStrings__DefaultConnection=${CONN}
     ports:
       - 8080:8080
+    depends_on:
+      - postgres
 
   postgresql:
     image: docker.io/bitnami/postgresql:latest
